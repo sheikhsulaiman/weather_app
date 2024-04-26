@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Weather App',
-      theme: darkMode,
+      theme: lightMode,
+      darkTheme: darkMode,
       home: const WeatherPage(),
     );
   }

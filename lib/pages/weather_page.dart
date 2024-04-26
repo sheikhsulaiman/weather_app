@@ -73,6 +73,7 @@ class _WeatherPageState extends State<WeatherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const Icon(Icons.place),
         title: Text('${_weather?.cityName}'),
       ),
       body: Center(

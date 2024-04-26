@@ -1,16 +1,12 @@
 # weather_app
 
-A new Flutter project.
+A mobile application built using the Flutter framework. It provides users with up-to-date weather information, including current conditions, hourly forecasts, and daily forecasts for any location worldwide.
 
-## Getting Started
+Contributing:
+We welcome contributions to Weatherify! If you encounter any bugs, have feature requests, or would like to contribute code, please feel free to open an issue or submit a pull request on GitHub.
 
-This project is a starting point for a Flutter application.
+License:
+This project is licensed under the MIT License. Feel free to use, modify, and distribute the code as per the terms of the license.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Credits:
+Weather data is provided by OpenWeatherMap API.

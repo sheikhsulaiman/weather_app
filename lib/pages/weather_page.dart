@@ -74,7 +74,8 @@ class _WeatherPageState extends State<WeatherPage> {
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.place),
-        title: Text('${_weather?.cityName}'),
+        title:
+            Text('${_weather?.cityName}', style: const TextStyle(fontSize: 20)),
       ),
       body: Center(
         child: _weather == null

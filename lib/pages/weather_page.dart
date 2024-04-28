@@ -30,7 +30,9 @@ class _WeatherPageState extends State<WeatherPage> {
         _weather = weather;
       });
     } catch (e) {
-      print(e);
+      const ScaffoldMessenger(
+        child: Text("Something went wrong, try again."),
+      );
     }
   }
 

@@ -11,6 +11,9 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
+  //network state
+  bool _isNetworkError = false;
+
   //api key
   final _weatherService =
       WeatherService(apiKey: "b1031ff838064a29a61ecfbc4213d3c9");
@@ -30,16 +33,9 @@ class _WeatherPageState extends State<WeatherPage> {
         _weather = weather;
       });
     } catch (e) {
-      const snackBar = SnackBar(
-        content: Center(
-          child: Text('An error occurred while fetching the weather',
-              style: TextStyle(
-                color: Colors.red,
-              )),
-        ),
-      );
-
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      setState(() {
+        _isNetworkError = true;
+      });
     }
   }
 
@@ -83,32 +79,62 @@ class _WeatherPageState extends State<WeatherPage> {
     return Scaffold(
       appBar: AppBar(
         leading: _weather != null ? const Icon(Icons.place) : null,
-        title: Text(
-            '${_weather != null ? _weather?.cityName : "Getting your location..."}',
+        title: Text('${_weather != null ? _weather?.cityName : "Weather Lite"}',
             style: const TextStyle(fontSize: 20)),
       ),
       body: Center(
-        child: _weather == null
-            ? const CircularProgressIndicator()
-            : SingleChildScrollView(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Lottie.asset(
-                        getWeatherAnimation(_weather!.mainCondition),
-                        height: 200,
-                        width: 200,
+        child: _isNetworkError
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/images/no_internet.png',
+                      height: 200, width: 200),
+                  const SizedBox(height: 20),
+                  Text('An error occurred while fetching the weather',
+                      style: TextStyle(
+                        color: Colors.red[400],
+                      )),
+                  const SizedBox(height: 20),
+                  // retry button
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
                       ),
-                      Text(
-                        '${_weather!.temperature}°C',
-                        style: const TextStyle(fontSize: 30),
-                      ),
-                      Text(
-                        _weather!.mainCondition,
-                        style: const TextStyle(fontSize: 30),
-                      ),
-                    ]),
-              ),
+                      onPressed: () {
+                        setState(() {
+                          _isNetworkError = false;
+                        });
+                        _fetchWeather();
+                      },
+                      child: const Text(
+                        'Retry',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ))
+                ],
+              )
+            : _weather == null
+                ? const CircularProgressIndicator()
+                : SingleChildScrollView(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Lottie.asset(
+                            getWeatherAnimation(_weather!.mainCondition),
+                            height: 200,
+                            width: 200,
+                          ),
+                          Text(
+                            '${_weather!.temperature}°C',
+                            style: const TextStyle(fontSize: 30),
+                          ),
+                          Text(
+                            _weather!.mainCondition,
+                            style: const TextStyle(fontSize: 30),
+                          ),
+                        ]),
+                  ),
       ),
     );
   }

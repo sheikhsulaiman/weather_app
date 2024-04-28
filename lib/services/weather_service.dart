@@ -15,7 +15,6 @@ class WeatherService {
         '$BASE_URL?lat=$latitude&lon=$longitude&appid=$apiKey&units=metric'));
 
     if (response.statusCode == 200) {
-      print(response.body);
       return Weather.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load weather data');

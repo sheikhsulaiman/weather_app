@@ -30,9 +30,16 @@ class _WeatherPageState extends State<WeatherPage> {
         _weather = weather;
       });
     } catch (e) {
-      const ScaffoldMessenger(
-        child: Text("Something went wrong, try again."),
+      const snackBar = SnackBar(
+        content: Center(
+          child: Text('An error occurred while fetching the weather',
+              style: TextStyle(
+                color: Colors.red,
+              )),
+        ),
       );
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 
@@ -75,9 +82,10 @@ class _WeatherPageState extends State<WeatherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.place),
-        title:
-            Text('${_weather?.cityName}', style: const TextStyle(fontSize: 20)),
+        leading: _weather != null ? const Icon(Icons.place) : null,
+        title: Text(
+            '${_weather != null ? _weather?.cityName : "Getting your location..."}',
+            style: const TextStyle(fontSize: 20)),
       ),
       body: Center(
         child: _weather == null

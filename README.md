@@ -1,4 +1,4 @@
-# weather_app
+# weather_app <img src="assets/icon/icon.png" width=20 />
 
 A mobile application built using the Flutter framework. It provides users with up-to-date weather information, including current conditions, hourly forecasts, and daily forecasts for any location worldwide.
 
@@ -10,3 +10,5 @@ This project is licensed under the MIT License. Feel free to use, modify, and di
 
 Credits:
 Weather data is provided by OpenWeatherMap API.
+
+[Download Apk](https://github.com/sheikhsulaiman/weather_app/releases/latest)
